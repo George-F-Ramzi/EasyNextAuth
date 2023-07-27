@@ -1,0 +1,13 @@
+import { SignJWT } from "jose";
+import { nanoid } from "nanoid";
+
+export default async function Authenticate(payload: { [value: string]: any }) {
+  let token = await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setJti(nanoid())
+    .setIssuedAt()
+    .setExpirationTime("10d")
+    .sign(new TextEncoder().encode(process.env.AUTHSECRET!));
+
+  return token;
+}

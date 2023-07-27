@@ -23,7 +23,8 @@
   "peerDependencies": {
     "next": ">=13",
     "nanoid": ">=4",
-    "cookies-next": ">=2"
+    "cookies-next": ">=2",
+    "jose": ">=4"
   },
   "author": "George F.Ramzi",
   "license": "GPL-3.0",

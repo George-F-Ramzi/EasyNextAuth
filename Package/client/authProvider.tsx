@@ -10,7 +10,7 @@ interface Prop {
 }
 
 export default function AuthProvider({ children, userData }: Prop) {
-  const [user, setUser] = useState<any | undefined>();
+  const [user, setUser] = useState<any | undefined>(undefined);
 
   useEffect(() => {
     if (userData === undefined) return;
