@@ -1,0 +1,39 @@
+{
+  "name": "easynextauth",
+  "version": "1.0.0",
+  "description": "Easily Manage Authentication In Your Next.js Apps",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build": "npm build:esm && npm build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/George-F-Ramzi/EasyNextAuth.git"
+  },
+  "keywords": [
+    "easynextauth",
+    "easy next auth",
+    "easy auth"
+  ],
+  "peerDependencies": {
+    "next": ">=13",
+    "nanoid": ">=4",
+    "cookies-next": ">=2"
+  },
+  "author": "George F.Ramzi",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/George-F-Ramzi/EasyNextAuth/issues"
+  },
+  "homepage": "https://github.com/George-F-Ramzi/EasyNextAuth#readme",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ]
+}
