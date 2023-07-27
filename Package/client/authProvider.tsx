@@ -18,7 +18,7 @@ export default function AuthProvider({ children, userData }: Prop) {
     if (!token) return;
     const getUserData = async () => {
       let res = await fetch(userData, { method: "GET" });
-      if (!res.ok) return Error(await res.text());
+      if (!res.ok) throw Error(await res.text());
       let data = await res.json();
       setUser(data);
       return;
