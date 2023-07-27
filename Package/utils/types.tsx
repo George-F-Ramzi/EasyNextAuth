@@ -1,3 +1,3 @@
 export interface IAuthContext {
-  user?: any;
+  user?: any | undefined;
 }

@@ -6,7 +6,7 @@ import { getCookie } from "cookies-next";
 
 interface Prop {
   children: React.ReactNode;
-  userData?: string;
+  userData: string;
 }
 
 export default function AuthProvider({ children, userData }: Prop) {
