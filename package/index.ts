@@ -1,4 +1,4 @@
 export * from "./client/authorizeClient";
 export * from "./client/authProvider";
-export * from "./client/GetUser";
+export * from "./client/getUser";
 export * from "./server/authenticate";
