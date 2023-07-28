@@ -1,6 +1,6 @@
 {
   "name": "easynextauth",
-  "version": "1.0.0",
+  "version": "1.2.8",
   "description": "Easily Manage Authentication In Your Next.js Apps",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -20,11 +20,13 @@
     "easy next auth",
     "easy auth"
   ],
-  "peerDependencies": {
-    "next": ">=13",
+  "dependencies": {
     "nanoid": ">=4",
     "cookies-next": ">=2",
     "jose": ">=4"
+  },
+  "peerDependencies": {
+    "next": ">=13"
   },
   "author": "George F.Ramzi",
   "license": "GPL-3.0",
