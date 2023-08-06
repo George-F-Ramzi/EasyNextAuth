@@ -9,11 +9,11 @@ Easily Manage Authentication In Your Next.js Apps
 first, we import the AuthProvider Component and wrap the main layout with the component and provide an API endpoint as value to the userData prop we will use this endpoint to retrieve user personal data for the client to consume
 
     return (
-        <AuthProivder userData='http://localhost:3000/api/me' >
-    	    <html  lang='en'>
-    			 <body  className={inter.className}>{children}</body>
+      <AuthProivder userData='http://localhost:3000/api/me' >
+    	  <html  lang='en'>
+    			<body  className={inter.className}>{children}</body>
     		</html>
-        <AuthProivder/>
+      <AuthProivder/>
     )
 
 **The AuthorizeClient Function**
@@ -25,7 +25,7 @@ and pass fromData to validate and redirect path to redirect the client after val
       onSubmit={async (e) => {
         e.preventDefault();
         let form: FormData = new FormData(e.currentTarget);
-    	await AuthroizeCLiet('http://localhost:3000/api/login','/home',form)
+    	  await AuthroizeCLiet('http://localhost:3000/api/login','/home',form)
       }}
     >
 
@@ -49,7 +49,7 @@ first, in .env file, we create AUTH_SECRET key with any value that can be used a
 
 **Authenticate Function**
 
-in your login or register route after validating the form or saving the user in the database it's time to generate a token call the Authenticate function and pass a payload the payload should be an object and don't put sensitive information in the payload, ex the user password lastly, the route method should be POST method
+In your login or register route after validating the form or saving the user in the database it's time to generate a token call the Authenticate function and pass a date (the date format should be :"10d","10h","10m" ends with d for days,h for hours, and m for minutes) and a payload the payload should be an object and don't put sensitive information in the payload, ex the user password lastly, the route method should be POST method
 
 real-world example
 
@@ -64,10 +64,10 @@ real-world example
     export async function POST(req: Request) {
     	let form = await req.formData();
     	let email = form.get("email")
-        let password = form.get("password")
+      let password = form.get("password")
 
     	const schema: Schema = Joi.object({
-           email: Joi.string()
+          email: Joi.string()
           .email({ tlds: { allow: false } })
           .required()
           .min(8)
@@ -76,18 +76,18 @@ real-world example
            password: Joi.string().required().min(8).max(120).label("Password"),
         });
 
-        const { error } = schema.validate({email,password});
+      const { error } = schema.validate({email,password});
     	if (error) return new Response(error.message, { status: 400 });
 
-        try {
-    	    let artist = await db
-    		    select({
-                id: Artists.id,
-                email: Artists.email,
-                password: Artists.password,
-              })
-              .from(Artists)
-              .where(eq(Artists.email, data.email));
+      try {
+    	  let artist = await db
+    		  select({
+              id: Artists.id,
+              email: Artists.email,
+              password: Artists.password,
+          })
+          .from(Artists)
+          .where(eq(Artists.email, data.email));
 
         if (artist.length === 0) {
           return new Response("Email Doesn't Exist", { status: 400 });
@@ -102,9 +102,10 @@ real-world example
           return new Response("Invalid Password", { status: 400 });
         }
 
-        let token = await Authenticate({id:artist[0].id!})
+        let session = await Authenticate({id:artist[0].id!},"10d")
 
-        return new Response(token, { status: 200 });
+        // the response should be in json and return the session object
+        return NextResponse.json(session, { status: 200 });
 
        } catch (error) {
         return new Response("Something Wrong Happen", { status: 400 });
