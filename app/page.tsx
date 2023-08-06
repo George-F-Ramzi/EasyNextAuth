@@ -1,6 +1,7 @@
 "use client";
 
-import authorizeClient from "@/package/client/authorizeClient";
+import AuthorizeClient from "@/package/client/authorizeClient";
+import GithubClient from "@/package/providers/github/githubClient";
 
 export default function Home() {
   return (
@@ -9,7 +10,11 @@ export default function Home() {
         onSubmit={async (e) => {
           e.preventDefault();
           let form = new FormData(e.currentTarget);
-          authorizeClient({ token: "sdf", date: "10m" });
+          await AuthorizeClient(
+            "http://localhost:3000/api",
+            "http://localhost:3000/",
+            form
+          );
         }}
         className='flex flex-col gap-4'
       >
@@ -28,6 +33,14 @@ export default function Home() {
           type='submit'
         >
           Join
+        </button>
+        <button
+          onClick={() => {
+            GithubClient("", "18bab4811010faa93ed8");
+          }}
+          className='border border-black'
+        >
+          Github
         </button>
       </form>
     </main>

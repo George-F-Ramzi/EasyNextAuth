@@ -1,5 +1,3 @@
-"use client";
-
 import { setCookie } from "cookies-next";
 
 interface Prop {
@@ -7,19 +5,15 @@ interface Prop {
   date: string;
 }
 
-export default function authorizeClient({ date, token }: Prop) {
+export default function setToken({ date, token }: Prop) {
   const setDate = (value: string) => {
     let match = value.match(/(\d+)/);
     let number = Number(match![0]);
     let isMinutes = false;
     let isHours = false;
 
-    if (value.includes("h")) {
-      isHours = true;
-    }
-    if (value.includes("m")) {
-      isMinutes = true;
-    }
+    if (value.includes("h")) isHours = true;
+    if (value.includes("m")) isMinutes = true;
 
     const date = new Date();
 
