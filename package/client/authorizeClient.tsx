@@ -8,6 +8,11 @@ export default function AuthorizeClient(
 ) {
   const navigate = useRouter();
 
+  const stringify = (date: string) => {
+    let match = date.match(/(\d+)/);
+    return Number(match![0]);
+  };
+
   //
   return async () => {
     let res = await fetch(api, {
@@ -15,12 +20,15 @@ export default function AuthorizeClient(
       body: formData,
     });
     if (!res.ok) return Error(await res.text());
-    let token = await res.text();
+    let data = await res.json();
+
     const date = new Date();
-    date.setTime(date.getTime() + 10 * 24 * 60 * 60 * 1000);
+    date.setTime(date.getTime() + stringify(data.date) * 24 * 60 * 60 * 1000);
     date.toUTCString();
-    setCookie("token", token, { expires: date });
+
+    setCookie("easy-next-token", data.token, { expires: date });
     navigate.replace(redirect);
+
     return;
   };
 }

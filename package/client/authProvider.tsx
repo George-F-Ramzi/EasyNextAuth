@@ -14,7 +14,7 @@ export default function AuthProvider({ children, userData }: Prop) {
 
   useEffect(() => {
     if (userData === undefined) return;
-    let token = getCookie("token");
+    let token = getCookie("easy-next-token");
     if (!token) return;
     const getUserData = async () => {
       let res = await fetch(userData, { method: "GET" });
