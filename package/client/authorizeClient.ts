@@ -1,5 +1,4 @@
 import setToken from "./setToken";
-import navigate from "./navigate";
 
 export default async function AuthorizeClient(
   api: string,
@@ -14,6 +13,6 @@ export default async function AuthorizeClient(
   let data = await res.json();
 
   setToken({ date: data.date, token: data.token });
-  navigate().replace(redirect);
+  window.location.replace(redirect);
   return;
 }

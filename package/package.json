@@ -1,6 +1,6 @@
 {
   "name": "easynextauth",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Easily Manage Authentication In Your Next.js Apps",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

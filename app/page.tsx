@@ -5,7 +5,7 @@ import GithubClient from "@/package/providers/github/githubClient";
 
 export default function Home() {
   return (
-    <main className='p-24 h-screen w-full flex items-center justify-center'>
+    <main className='p-24 h-screen w-full flex-col flex items-center justify-center'>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
@@ -34,15 +34,15 @@ export default function Home() {
         >
           Join
         </button>
-        <button
-          onClick={() => {
-            GithubClient("", "18bab4811010faa93ed8");
-          }}
-          className='border border-black'
-        >
-          Github
-        </button>
       </form>
+      <button
+        onClick={() => {
+          GithubClient("18bab4811010faa93ed8");
+        }}
+        className='border mt-3 border-black'
+      >
+        Github
+      </button>
     </main>
   );
 }
