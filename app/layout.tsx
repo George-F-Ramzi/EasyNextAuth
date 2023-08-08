@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider userData='http://localhost:3000/api/me'>
+    <AuthProvider>
       <html lang='en'>
         <body className={inter.className}>{children}</body>
       </html>

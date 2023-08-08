@@ -6,25 +6,26 @@ import { getCookie } from "cookies-next";
 
 interface Prop {
   children: React.ReactNode;
-  userData: string;
 }
 
-export default function AuthProvider({ children, userData }: Prop) {
+export default function AuthProvider({ children }: Prop) {
   const [user, setUser] = useState<any | undefined>(undefined);
 
   useEffect(() => {
-    if (userData === undefined) return;
+    let host = window.location.href;
     let token = getCookie("easy-next-token");
     if (!token) return;
     const getUserData = async () => {
-      let res = await fetch(userData, { method: "GET" });
+      let res = await fetch(host + "/api/easyauth/me", {
+        method: "GET",
+      });
       if (!res.ok) throw Error(await res.text());
       let data = await res.json();
       setUser(data);
       return;
     };
     getUserData();
-  }, [userData, setUser]);
+  }, [setUser]);
 
   return (
     <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>

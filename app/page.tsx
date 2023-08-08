@@ -10,13 +10,9 @@ export default function Home() {
         onSubmit={async (e) => {
           e.preventDefault();
           let form = new FormData(e.currentTarget);
-          await AuthorizeClient(
-            "http://localhost:3000/api",
-            "http://localhost:3000/",
-            form
-          );
+          await AuthorizeClient("login", form);
         }}
-        className='flex flex-col gap-4'
+        className='flex flex-col  gap-4'
       >
         <input
           className='border border-black'
@@ -39,7 +35,7 @@ export default function Home() {
         onClick={() => {
           GithubClient("18bab4811010faa93ed8");
         }}
-        className='border mt-3 border-black'
+        className='border mt-3 w-full border-black'
       >
         Github
       </button>

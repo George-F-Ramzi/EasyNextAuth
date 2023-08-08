@@ -1,11 +1,12 @@
 import setToken from "./setToken";
 
 export default async function AuthorizeClient(
-  api: string,
-  redirect: string,
+  route: string,
   formData: FormData
 ) {
-  let res = await fetch(api, {
+  let host = window.location.href;
+
+  let res = await fetch(host + "/api/easyauth/" + route, {
     method: "POST",
     body: formData,
   });
@@ -13,6 +14,6 @@ export default async function AuthorizeClient(
   let data = await res.json();
 
   setToken({ date: data.date, token: data.token });
-  window.location.replace(redirect);
+  window.location.replace("/");
   return;
 }

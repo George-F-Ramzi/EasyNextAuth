@@ -1,4 +1,5 @@
 import { setCookie } from "cookies-next";
+import setToken from "../../client/setToken";
 
 async function GithubClient(client_id: string) {
   let host = window.location.href;
@@ -41,7 +42,8 @@ async function GithubClient(client_id: string) {
 
     let data = await res.json();
 
-    console.log(data);
+    setToken({ date: data.date, token: data.token });
+    window.location.replace("/");
     return;
   };
 
