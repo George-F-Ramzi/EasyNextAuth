@@ -8,13 +8,13 @@ Easily Manage Authentication In Your Next.js Apps
 
 first, we import the AuthProvider Component and wrap the main layout with the component
 
-```javascript
+```js
 return (
-  <AuthProivder >
-	  <html  lang='en'>
-			<body  className={inter.className}>{children}</body>
-		</html>
-  <AuthProivder/>
+  <AuthProvider>
+    <html  lang='en'>
+      <body  className={inter.className}>{children}</body>
+    </html>
+  <AuthProvider/>
 )
 ```
 
@@ -24,10 +24,11 @@ on your login or register page import AuthorizeClient Function and pass fromData
 
 ```javascript
 <form
-	onSubmit={async (e) => {
-		e.preventDefault();
-		let form: FormData = new FormData(e.currentTarget);
-		await AuthroizeCLiet( 'login'  ,form )
+   onSubmit={async (e) => {
+     e.preventDefault();
+
+     let form: FormData = new FormData(e.currentTarget);
+     await AuthroizeCLiet( 'login'  ,form )
   }}
 >
 ```
